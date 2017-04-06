@@ -17,7 +17,7 @@ public class ProgramLauncher
     }
 
 
-//omri edit it
+//omri edit it again!
     public static Connection getConnectionAndInitDatabase(String dataBaseName)
     {
         Connection c = null;
