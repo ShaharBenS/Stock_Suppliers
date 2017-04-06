@@ -13,8 +13,8 @@ public class ProgramLauncher
     {
         //TODO
 
-    }
-
+}
+//omri edit it
     public static Connection getConnectionAndInitDatabase(String dataBaseName)
     {
         Connection c = null;
