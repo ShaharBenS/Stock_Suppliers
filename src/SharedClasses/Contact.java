@@ -1,4 +1,4 @@
-package sharedClasses;
+package SharedClasses;
 
 /**
  * Created by keren on 4/6/2017.

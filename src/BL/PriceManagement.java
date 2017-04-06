@@ -11,8 +11,8 @@ public class PriceManagement
        this.PD = pd;
    }
 
-   /* DATA FOR PRICES */
 
+   /* DATA FOR PRICES */
    public boolean updateBuyPrice(String line)
    {
        String[] prop = line.split("\\s+");
@@ -26,6 +26,7 @@ public class PriceManagement
 
    public boolean updateSellPrice(String line)
    {
+       
        String[] prop = line.split("\\s+");
        if(prop.length != 2) return false;
        try{

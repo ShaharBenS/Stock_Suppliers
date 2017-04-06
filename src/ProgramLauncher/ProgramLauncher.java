@@ -12,7 +12,6 @@ public class ProgramLauncher
     public static void main(String [] args)
     {
         //TODO
-        int x = 6;
         Connection conn = getConnectionAndInitDatabase("Database.db");
     }
 
@@ -31,7 +30,7 @@ public class ProgramLauncher
 
             /*Creating Tables if they are NOT existed */
 
-            //TODO
+            //TODO Create Table
 
 
             if(stmt != null){
