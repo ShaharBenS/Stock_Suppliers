@@ -12,7 +12,8 @@ public class ProgramLauncher
     public static void main(String [] args)
     {
         //TODO
-
+        int x = 6;
+        Connection conn = getConnectionAndInitDatabase("Database.db");
     }
 
     public static Connection getConnectionAndInitDatabase(String dataBaseName)
@@ -31,7 +32,9 @@ public class ProgramLauncher
             //TODO
 
 
-            stmt.close();
+            if(stmt != null){
+                stmt.close();
+            }
 
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
