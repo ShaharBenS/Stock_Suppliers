@@ -8,12 +8,21 @@ public class Supplier {
     private String name;
     private int bankNum;
     private int branchNum;
-    private int AccountNum;
-    private String Payment;
-    private String DeliveryMethod;
-    private String SupplyTime;
+    private int accountNum;
+    private String payment;
+    private String deliveryMethod;
+    private String supplyTime;
 
-    public Supplier(int id, String name, int bankNum, int branchNum, int accountNum, int Pa)
+    public Supplier(int id, String name, int bankNum, int branchNum, int accountNum, String payment, String deliveryMethod, String supplyTime){
+        this.id = id;
+        this.name = name;
+        this.bankNum = bankNum;
+        this.branchNum = branchNum;
+        this.accountNum = accountNum;
+        this.payment = payment;
+        this.deliveryMethod = deliveryMethod;
+        this.supplyTime = supplyTime;
+    }
     public int getId() {
         return id;
     }
@@ -39,48 +48,43 @@ public class Supplier {
     }
 
     public int getBranchNum() {
-        return BranchNum;
+        return branchNum;
     }
 
     public void setBranchNum(int branchNum) {
-        BranchNum = branchNum;
+        this.branchNum = branchNum;
     }
 
     public int getAccountNum() {
-        return AccountNum;
+        return accountNum;
     }
 
     public void setAccountNum(int accountNum) {
-        AccountNum = accountNum;
+        this.accountNum = accountNum;
     }
 
     public String getPayment() {
-        return Payment;
+        return payment;
     }
 
     public void setPayment(String payment) {
-        Payment = payment;
+        this.payment = payment;
     }
 
     public String getDeliveryMethod() {
-        return DeliveryMethod;
+        return deliveryMethod;
     }
 
     public void setDeliveryMethod(String deliveryMethod) {
-        DeliveryMethod = deliveryMethod;
+        this.deliveryMethod = deliveryMethod;
     }
 
     public String getSupplyTime() {
-        return SupplyTime;
+        return supplyTime;
     }
 
     public void setSupplyTime(String supplyTime) {
-        SupplyTime = supplyTime;
+        this.supplyTime = supplyTime;
     }
-
-
-
-
-
 
 }
