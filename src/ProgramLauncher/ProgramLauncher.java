@@ -3,16 +3,17 @@ package ProgramLauncher;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import PL.Menu;
 
 /**
  * Created by Shahar on 06/04/17.
  */
 public class ProgramLauncher
 {
-    public static void main(String [] args)
-    {
+    public static void main(String [] args) {
         //TODO
         Connection conn = getConnectionAndInitDatabase("Database.db");
+        new Menu().start();
     }
 
     public static Connection getConnectionAndInitDatabase(String dataBaseName) {
@@ -24,10 +25,11 @@ public class ProgramLauncher
             c = DriverManager.getConnection("jdbc:sqlite:" + dataBaseName);
 
             c.createStatement().execute("PRAGMA FOREIGN_KEYS = ON;");
-
+            c.setAutoCommit(false);
             /*Creating Tables if they are NOT existed */
 
             //TODO Create Table
+            stmt = c.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS Suppliers " +
                     "(ID INT PRIMARY KEY     NOT NULL," +
                     " Name          TEXT    NOT NULL, " +
