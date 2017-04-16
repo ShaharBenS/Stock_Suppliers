@@ -4,24 +4,34 @@ package SharedClasses;
  * Created by keren on 4/6/2017.
  */
 public class Contact {
-    private int id;
+    private String id;
+    private int supplierId;
     private String fullName;
     private String phoneNumber;
     private String email;
 
-    public Contact(int id, String fullName, String phoneNumber, String email) {
+    public Contact(String id, int supplierId, String fullName, String phoneNumber, String email) {
         this.id = id;
+        this.supplierId = supplierId;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public int getSupplierID() {
+        return supplierId;
+    }
+
+    public void setSupplierID(int id) {
+        this.supplierId = id;
     }
 
     public String getFullName() {

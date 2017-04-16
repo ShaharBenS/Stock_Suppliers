@@ -9,12 +9,13 @@ public class Item {
     private String name;
     private String manufacture;
 
-    public Item(int itemID, int categoryNumber, String name, String manufacture){
+    public Item(int itemID,  String name, int categoryNumber, String manufacture) {
         this.itemID = itemID;
         this.categoryNumber = categoryNumber;
         this.name = name;
         this.manufacture = manufacture;
     }
+
     public int getItemID() {
         return itemID;
     }

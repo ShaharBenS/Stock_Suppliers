@@ -7,9 +7,9 @@ public class SupplierItem {
     private int supplierID;
     private int itemID;
     private int catalogNumber;
-    private int cost;
+    private double cost;
 
-    public SupplierItem(int supplierID, int itemID, int catalogNumber, int cost){
+    public SupplierItem(int supplierID, int itemID, int catalogNumber, double cost) {
         this.supplierID = supplierID;
         this.itemID = itemID;
         this.catalogNumber = catalogNumber;
@@ -40,11 +40,11 @@ public class SupplierItem {
         this.catalogNumber = catalogNumber;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 

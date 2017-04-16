@@ -48,5 +48,3 @@ public class Discount {
         this.discountPercentage = discountPercentage;
     }
 }
-
-
