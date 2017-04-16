@@ -28,7 +28,9 @@ public class ProgramLauncher
             c.setAutoCommit(false);
             /*Creating Tables if they are NOT existed */
 
-            //TODO Create Table
+            /*
+                Suppliers Table : ID, Name, BankNum, BranchBum, AccountNum, Payment, DeliveryMethod, SupplyTime.
+             */
             stmt = c.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS Suppliers " +
                     "(ID INT PRIMARY KEY     NOT NULL," +
@@ -37,13 +39,14 @@ public class ProgramLauncher
                     " BranchNum           INT    NOT NULL, " +
                     " AccountNum				INT     NOT NULL, " +
                     " Payment         TEXT	NOT NULL," +
-                    "DeliveryMethod TEXT NOT NULL," +
-                    "SupplyTime TEXT);";
+                    " DeliveryMethod TEXT NOT NULL," +
+                    " SupplyTime TEXT);";
             stmt.executeUpdate(sql);
             stmt.close();
-            c.commit();
 
-
+            /*
+                Contacts Table : ID, Full name, Phone Number, Email.
+             */
             stmt = c.createStatement();
             sql = "CREATE TABLE IF NOT EXISTS Contacts " +
                     "(ID   TEXT NOT NULL," +
@@ -56,18 +59,24 @@ public class ProgramLauncher
                     "ON DELETE CASCADE ON UPDATE CASCADE);";
             stmt.executeUpdate(sql);
             stmt.close();
-            c.commit();
 
+
+            /*
+                Items : ID, Name, CategoryNumber, Manufacture.
+             */
             stmt = c.createStatement();
-            sql = "CREATE TABLE IF NOT EXISTS Items " +
-                    "(ID INT PRIMARY KEY     NOT NULL," +
-                    " Name   TEXT NOT NULL, " +
-                    " CategoryNumber           TEXT    NOT NULL, " +
-                    " Manufacture           TEXT    NOT NULL);";
+            sql = "  CREATE TABLE IF NOT EXISTS Items " +
+                  " (ID   INT PRIMARY KEY  NOT NULL," +
+                    " NAME   TEXT NOT NULL, " +
+                    " CategoryNumber       TEXT    NOT NULL, " +
+                    " Manufacture          TEXT    NOT NULL);";
             stmt.executeUpdate(sql);
             stmt.close();
-            c.commit();
 
+
+            /*
+                SuppliersItems : SupplierID, ItemID, CatalogNumber, Cost, SupplierID(FR), ItemID(FR)
+             */
             stmt = c.createStatement();
             sql = "CREATE TABLE IF NOT EXISTS SupplierItems " +
                     "(SupplierID INT   NOT NULL," +
@@ -78,8 +87,11 @@ public class ProgramLauncher
                     "FOREIGN KEY(ItemID) REFERENCES Items(ID) ON UPDATE CASCADE ON DELETE CASCADE); " ;
             stmt.executeUpdate(sql);
             stmt.close();
-            c.commit();
 
+
+            /*
+                Discounts : SupplierID, ItemID, Quantity, DiscountPercentage, SupplierID(FR), ItemID(FR)
+             */
             stmt = c.createStatement();
             sql = "CREATE TABLE IF NOT EXISTS Discounts " +
                     "(SupplierID INT  NOT NULL," +
@@ -91,8 +103,11 @@ public class ProgramLauncher
                     "FOREIGN KEY(ItemID) REFERENCES Items(ID) ON DELETE CASCADE ON UPDATE CASCADE); " ;
             stmt.executeUpdate(sql);
             stmt.close();
-            c.commit();
 
+
+            /*
+                Orders : OrderID, SupplierID, SupplierName, Date, ContactNumber, SupplierID(FR), ContactNumber(FR).
+             */
             stmt = c.createStatement();
             sql = "CREATE TABLE IF NOT EXISTS Orders " +
                     "(OrderID INT PRIMARY KEY  NOT NULL," +
@@ -104,8 +119,13 @@ public class ProgramLauncher
                     "FOREIGN KEY(ContactNumber) REFERENCES SupplierItems(PhoneNumber) ON DELETE CASCADE ON UPDATE CASCADE); " ;
             stmt.executeUpdate(sql);
             stmt.close();
-            c.commit();
 
+
+            /*
+                OrdersItems : OrderID, catalogNumber, ItemName, Quantity, Cost,
+                              Discount, FinalCost, OrderID(FR), catalogNumber(FR),
+                              ItemName(FR), Cost(FR), Discount(FR).
+             */
             stmt = c.createStatement();
             sql = "CREATE TABLE IF NOT EXISTS OrdersItems " +
                     "(OrderID INT PRIMARY KEY  NOT NULL," +
@@ -122,12 +142,22 @@ public class ProgramLauncher
                     "FOREIGN KEY(Discount) REFERENCES Discounts(DiscountPercentage) ON DELETE CASCADE ON UPDATE CASCADE); " ;
             stmt.executeUpdate(sql);
             stmt.close();
+
+            /*
+                Category : ID, Name, ID_Father.
+             */
+            stmt = c.createStatement();
+            stmt.executeQuery(  "CREATE TABLE IF NOT EXISTS CATEGORY " +
+                                    "(ID INT PRIMARY KEY     NOT NULL ," +
+                                    " NAME           CHAR(50) NOT NULL, " +
+                                    " ID_FATHER  INT DEFAULT NULL REFERENCES CATEGORY(ID) " +
+                                    " ON UPDATE CASCADE ON DELETE SET NULL);");
+            stmt.close();
+
+
+
             c.commit();
-
-
-            if (stmt != null) {
-                stmt.close();
-            }
+            stmt.close();
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
