@@ -41,7 +41,7 @@ public class ProgramLauncher
                     " Payment         TEXT	NOT NULL," +
                     " DeliveryMethod TEXT NOT NULL," +
                     " SupplyTime TEXT);";
-            stmt.executeUpdate(sql);
+            stmt.execute(sql);
             stmt.close();
 
             /*
@@ -57,7 +57,7 @@ public class ProgramLauncher
                     "PRIMARY KEY(SupplierID, ID),"+
                     "FOREIGN KEY(SupplierID) REFERENCES Suppliers(ID) " +
                     "ON DELETE CASCADE ON UPDATE CASCADE);";
-            stmt.executeUpdate(sql);
+            stmt.execute(sql);
             stmt.close();
 
 
@@ -70,7 +70,7 @@ public class ProgramLauncher
                     " NAME   TEXT NOT NULL, " +
                     " CategoryNumber       TEXT    NOT NULL, " +
                     " Manufacture          TEXT    NOT NULL);";
-            stmt.executeUpdate(sql);
+            stmt.execute(sql);
             stmt.close();
 
 
@@ -85,7 +85,7 @@ public class ProgramLauncher
                     " Cost REAL  NOT NULL, " +
                     " FOREIGN KEY(SupplierID) REFERENCES Suppliers(ID) ON UPDATE CASCADE ON DELETE CASCADE,"+
                     "FOREIGN KEY(ItemID) REFERENCES Items(ID) ON UPDATE CASCADE ON DELETE CASCADE); " ;
-            stmt.executeUpdate(sql);
+            stmt.execute(sql);
             stmt.close();
 
 
@@ -101,7 +101,7 @@ public class ProgramLauncher
                     "PRIMARY KEY (SupplierID, ItemID, Quantity),"+
                     " FOREIGN KEY(SupplierID) REFERENCES Suppliers(ID) ON UPDATE CASCADE ON DELETE CASCADE,"+
                     "FOREIGN KEY(ItemID) REFERENCES Items(ID) ON DELETE CASCADE ON UPDATE CASCADE); " ;
-            stmt.executeUpdate(sql);
+            stmt.execute(sql);
             stmt.close();
 
 
@@ -117,7 +117,7 @@ public class ProgramLauncher
                     " ContactNumber TEXT  NOT NULL, " +
                     " FOREIGN KEY(SupplierID) REFERENCES Suppliers(ID) ON UPDATE CASCADE ON DELETE CASCADE,"+
                     "FOREIGN KEY(ContactNumber) REFERENCES SupplierItems(PhoneNumber) ON DELETE CASCADE ON UPDATE CASCADE); " ;
-            stmt.executeUpdate(sql);
+            stmt.execute(sql);
             stmt.close();
 
 
@@ -140,20 +140,20 @@ public class ProgramLauncher
                     " FOREIGN KEY(ItemName) REFERENCES Items(Name) ON UPDATE CASCADE ON DELETE CASCADE,"+
                     " FOREIGN KEY(Cost) REFERENCES SupplierItems(Cost) ON UPDATE CASCADE ON DELETE CASCADE,"+
                     "FOREIGN KEY(Discount) REFERENCES Discounts(DiscountPercentage) ON DELETE CASCADE ON UPDATE CASCADE); " ;
-            stmt.executeUpdate(sql);
+            stmt.execute(sql);
             stmt.close();
 
             /*
                 Category : ID, Name, ID_Father.
              */
             stmt = c.createStatement();
-            stmt.executeQuery(  "CREATE TABLE IF NOT EXISTS CATEGORY " +
-                                    "(ID INT PRIMARY KEY     NOT NULL ," +
-                                    " NAME           CHAR(50) NOT NULL, " +
-                                    " ID_FATHER  INT DEFAULT NULL REFERENCES CATEGORY(ID) " +
-                                    " ON UPDATE CASCADE ON DELETE SET NULL);");
+            sql =   "CREATE TABLE IF NOT EXISTS CATEGORY " +
+                    "(ID INT PRIMARY KEY     NOT NULL ," +
+                    " NAME           CHAR(50) NOT NULL, " +
+                    " ID_FATHER  INT DEFAULT NULL REFERENCES CATEGORY(ID) " +
+                    " ON UPDATE CASCADE ON DELETE SET NULL);";
+            stmt.execute(sql);
             stmt.close();
-
 
 
             c.commit();
