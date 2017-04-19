@@ -5,12 +5,12 @@ import BL.SupplierBL;
 import java.util.Scanner;
 
 
-public class PL {
+public class PL_Supplier {
     public final int SLEEP_TIME = 1000; // In seconds
     SupplierBL bl;
     private Scanner sc = new Scanner(System.in);
 
-    public PL(SupplierBL bl) {
+    public PL_Supplier(SupplierBL bl) {
         this.bl = bl;
     }
 

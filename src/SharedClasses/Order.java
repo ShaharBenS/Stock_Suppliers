@@ -8,18 +8,25 @@ public class Order {
     private int orderID;
     private int supplierID;
     private String supName;
-    private String date;
+    private Date date;
     private String ContactNum;
     private OrderItem orderItems;
 
-    public Order(int OrderID, int supplierID, String supName, String date, String ContactNum){
+    public Order(int OrderID, int supplierID, String supName, Date date, String ContactNum, OrderItem orderItems){
         this.orderID = OrderID;
         this.supplierID = supplierID;
         this.supName= supName;
-        this.date= date;
+        this.date = new Date(date);
+        this.ContactNum = ContactNum;
+        this.orderItems = orderItems;
+    }
+    public Order(int OrderID, int supplierID, String supName, Date date, String ContactNum){
+        this.orderID = OrderID;
+        this.supplierID = supplierID;
+        this.supName= supName;
+        this.date = new Date(date);
         this.ContactNum = ContactNum;
     }
-
 
     public int getOrderID(){ return orderID;}
 
@@ -33,12 +40,19 @@ public class Order {
 
     public void setSupplierName(String supName){this.supName=supName;}
 
-    public String getDate(){return date;}
+    public Date getDate(){return date;}
 
-    public void setDate(String date){this.date = date;}
+    public void setDate(Date date){this.date = date;}
 
     public String getContactNum(){return ContactNum;};
 
     public void setContactNum(String contactNum){this.ContactNum = contactNum;}
 
+    public OrderItem getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(OrderItem orderItems) {
+        this.orderItems = orderItems;
+    }
 }

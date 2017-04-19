@@ -243,9 +243,13 @@ public class SupplierBL {
         return dis.ifExist(supID, itemID, Quantity);
     }
 
-    public boolean addOrder(int supplierId, String date){
+    public int addOrder(int supplierId, Date date){
         Order ord = new Order(OrderID++,supplierId, sup.getSupplierName(supplierId),date, contacts.getContactNum(supplierId));
-        return order.addOrder(ord);
+        if(!order.addOrder(ord))
+        {
+            return -1;
+        }
+        return ord.getOrderID();
     }
 
     public boolean addOrderItem(int orderID,int supplierID,int itemID, int quantity){
@@ -255,5 +259,11 @@ public class SupplierBL {
         OrderItem orderItem = new OrderItem(orderID,si.getCatalogNumber(itemID,supplierID), item.getItemName(itemID), quantity,cost, disco, finalCost);
         return OI.addOrderItem(orderItem);
     }
+    //TODO implement this
+    int getSupplierID(int itemID)
+    {
+        return -1;
+    }
+
 
 }

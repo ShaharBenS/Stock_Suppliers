@@ -45,6 +45,10 @@ public class Date
         }catch(Exception e){this.day = 0; this.month = 0; this.year =0;}
     }
 
+    public Date(java.util.Date date) {
+        //TODO !#$!#$ implement
+    }
+
     @Override public String toString()
     {
         return ""+day+"."+month+"."+year;

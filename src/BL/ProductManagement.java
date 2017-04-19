@@ -1,16 +1,21 @@
 package BL;
 
 import DAL.Product_Data;
+import SharedClasses.Date;
 import SharedClasses.Products;
+import SharedClasses.Supplier;
 
 /**
  * Created by Shahar on 29/03/17.
  */
 public class ProductManagement {
     Product_Data PD;
+    SupplierBL SBL;
 
-    public ProductManagement(Product_Data PD) {
+    public ProductManagement(Product_Data PD,SupplierBL sbl)
+    {
         this.PD = PD;
+        this.SBL = sbl;
     }
 
     // ADD NEW PRODUCT TO DATABASE
@@ -189,11 +194,9 @@ public class ProductManagement {
     private void checkIfNeedToAlert(int id) {
         Products products = PD.getProduct(id);
         if (products.getAmountInWarehouse() <= products.getMinimalAmount()) {
-            System.out.print(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
-            System.out.print(" >>>>>             A L E R T            >>>>>\n");
-            System.out.print(" >>>>>Product  " + products.getId() + " is gonna run out !\n");
-            System.out.print(" >>>>>Only " + products.getAmountInWarehouse() + " stocks left!\n");
-            System.out.print(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+            int supplierID = SBL.getSupplierID(id);
+            int orderID = SBL.addOrder(supplierID,new Date(new java.util.Date()));
+            SBL.addOrderItem(orderID,supplierID,id, -1 ); //TODO Order quantity
         }
     }
 

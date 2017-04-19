@@ -3,7 +3,8 @@ package SharedClasses;
 /**
  * Created by keren on 4/6/2017.
  */
-public class Contact {
+public class Contact
+{
     private String id;
     private int supplierId;
     private String fullName;

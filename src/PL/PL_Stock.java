@@ -6,13 +6,14 @@ import BL.ProductManagement;
 import java.util.Scanner;
 
 
-public class InputReader
+public class PL_Stock
 {
     private Scanner scanner = new Scanner(System.in);
     private ProductManagement ProductM;
     private PriceManagement PriceM;
     private CategoryManagement CategoryM;
 
+    //TODO fix this shit - exit to back
     private final String[] MENU = {"Choose an option:" ,
             "1) Add new Product" ,
             "2) Add new Category" ,
@@ -39,7 +40,7 @@ public class InputReader
             "20) Show all products",
             "21) Exit"};
 
-    public InputReader(ProductManagement pm, PriceManagement price_m, CategoryManagement cm)
+    public PL_Stock(ProductManagement pm, PriceManagement price_m, CategoryManagement cm)
     {
         this.CategoryM = cm;
         this.PriceM = price_m;

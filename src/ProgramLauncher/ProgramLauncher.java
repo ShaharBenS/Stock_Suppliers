@@ -11,7 +11,8 @@ import PL.Menu;
 public class ProgramLauncher
 {
     public static void main(String [] args) {
-        //TODO
+        //TODO create all layers.
+
         Connection conn = getConnectionAndInitDatabase("Database.db");
         new Menu().start();
     }
@@ -40,7 +41,7 @@ public class ProgramLauncher
                     " AccountNum				INT     NOT NULL, " +
                     " Payment         TEXT	NOT NULL," +
                     " DeliveryMethod TEXT NOT NULL," +
-                    " SupplyTime TEXT);";
+                    " SupplyTime TEXT);";               // TODO add address field!
             stmt.execute(sql);
             stmt.close();
 
@@ -144,18 +145,18 @@ public class ProgramLauncher
             stmt.close();
 
             /*
-                Category : ID, Name, ID_Father.
+                Category : ID, Name, ID_Father. When ID_father is -1, that category has no father.
              */
             stmt = c.createStatement();
             sql =   "CREATE TABLE IF NOT EXISTS CATEGORY " +
                     "(ID INT PRIMARY KEY     NOT NULL ," +
                     " NAME           CHAR(50) NOT NULL, " +
-                    " ID_FATHER  INT DEFAULT NULL REFERENCES CATEGORY(ID) " +
+                    " ID_FATHER  INT NOT NULL DEFAULT -1 REFERENCES CATEGORY(ID) " +
                     " ON UPDATE CASCADE ON DELETE SET NULL);";
             stmt.execute(sql);
             stmt.close();
 
-
+            
             c.commit();
             stmt.close();
 
